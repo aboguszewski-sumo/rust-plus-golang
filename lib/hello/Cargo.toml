@@ -1,5 +1,6 @@
 [package]
 name = "hello"
+edition = "2021"
 version = "0.1.0"
 
 [lib]
@@ -11,3 +12,5 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 libc = "0.2.2"
+tokio = { version = "1.23.0", features = ["full"] }
+lazy_static = "1.4.0"

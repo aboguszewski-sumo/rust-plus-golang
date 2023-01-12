@@ -3,3 +3,6 @@
 
 void hello(char *name);
 void whisper(char *message);
+
+void run_tokio();
+void test_pointer(char *ptr);

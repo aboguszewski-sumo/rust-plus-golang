@@ -3,26 +3,16 @@ ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 # PHONY means that it doesn't correspond to a file; it always runs the build commands.
 
 .PHONY: build-all
-build-all: build-dynamic build-static
+build-all: build-static
 
 .PHONY: run-all
-run-all: run-dynamic run-static
-
-.PHONY: build-dynamic
-build-dynamic:
-	@cd lib/hello && cargo build --release
-	@cp lib/hello/target/release/libhello.so lib/
-	go build -ldflags="-r $(ROOT_DIR)lib" main_dynamic.go
+run-all: run-static
 
 .PHONY: build-static
 build-static:
 	@cd lib/hello && cargo build --release
 	@cp lib/hello/target/release/libhello.a lib/
 	go build main_static.go
-
-.PHONY: run-dynamic
-run-dynamic: build-dynamic
-	@./main_dynamic
 
 .PHONY: run-static
 run-static: build-static
